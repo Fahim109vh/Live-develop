@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>ওয়েবসাইট</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #4a148c;
+      color: white;
+      padding: 10px 20px;
+      animation: slideDown 1s ease;
+    }
+
+    .title {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 18px;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px #000;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .top-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .top-buttons button {
+      background: #7e57c2;
+      border: none;
+      color: white;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .top-buttons button:hover {
+      background: #512da8;
+    }
+
+    .news-ticker {
+      overflow: hidden;
+      background-color: #ffebee;
+      color: #b71c1c;
+      font-weight: bold;
+      font-size: 16px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      display: none;
+    }
+
+    .ticker-text {
+      position: absolute;
+      white-space: nowrap;
+      animation: ticker 8s linear;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-template-rows: 50% 50%;
+      height: calc(100vh - 130px);
+    }
+
+    .box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f3e5f5;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      transition: background 0.3s;
+    }
+
+    .box:hover {
+      background-color: #e1bee7;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #f3e5f5, 0 0 15px #ab47bc;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ce93d8, 0 0 30px #8e24aa;
+      }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes ticker {
+      0% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    /* Custom Popup */
+    #customPopup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ffffff;
+      border: 3px solid #9c27b0;
+      border-radius: 12px;
+      padding: 25px 20px;
+      width: 85%;
+      max-width: 400px;
+      z-index: 9999;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    #customPopup h3 {
+      color: #4a148c;
+      margin-bottom: 10px;
+    }
+
+    #customPopup p {
+      color: #333;
+      font-size: 15px;
+    }
+
+    #customPopup a {
+      margin-top: 15px;
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    #customPopup a:hover {
+      background: #1ebc59;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="title">Web Designer Fahim</div>
+    <div class="top-buttons">
+      <button onclick="hideSite('box1')">১</button>
+      <button onclick="hideSite('box2')">২</button>
+      <button onclick="hideSite('box3')">৩</button>
+      <button onclick="hideSite('box4')">৪</button>
+    </div>
+    <div class="title">App Designer Fahim</div>
+  </div>
+
+  <!-- News Ticker -->
+  <div class="news-ticker" id="newsTicker">
+    <div class="ticker-text">
+      আসসালামু আলাইকুম এই ওয়েবসাইটটি কাউকে শেয়ার করবেন না। এই ওয়েবসাইটটি শুধুমাত্র বানানো হয়েছে আপনাদের সুবিধার জন্য।
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid">
+    <div class="box" onclick="loadSite('box1', 'https://5min.email/')">5Min Email খুলুন</div>
+    <div class="box" onclick="loadSite('box2', 'https://2fa.cn/')">2FA খুলুন</div>
+    <div class="box" onclick="loadSite('box3', 'https://hitools.pro/check-live-uid')">Hitools UID Checker</div>
+    <div class="box" onclick="loadSite('box4', 'https://tempmail.vn/')">TempMail VN</div>
+  </div>
+
+  <!-- Custom Popup -->
+  <div id="customPopup">
+    <h3>ভুল কোড দিয়েছেন</h3>
+    <p>এই ওয়েবসাইটে প্রবেশের অনুমতি নেই। কোড নিতে হলে নিচের WhatsApp বাটনে ক্লিক করুন:</p>
+    <a href="https://wa.me/8801884776095?text=CODE" target="_blank">WhatsApp-এ কোড নিতে ক্লিক করুন</a>
+  </div>
+
+  <script>
+    const correctCode = "developfahim079";
+    let attempt = 0;
+
+    while (attempt < 2) {
+      const input = prompt("অ্যাক্সেস কোড লিখুন:");
+      if (input === correctCode) {
+        break;
+      } else {
+        if (attempt === 0) {
+          alert("ভুল কোড দিয়েছেন! আরেকবার এমন করলে আপনাকে বাতিল করা হবে।");
+        } else {
+          document.getElementById("customPopup").style.display = "block";
+          throw new Error("Unauthorized access");
+        }
+        attempt++;
+      }
+    }
+
+    function loadSite(id, url) {
+      document.getElementById(id).innerHTML = `<iframe src="${url}" title="Site"></iframe>`;
+    }
+
+    function hideSite(id) {
+      document.getElementById(id).innerHTML = "";
+    }
+
+    function showTicker() {
+      const ticker = document.getElementById("newsTicker");
+      ticker.style.display = "flex";
+      setTimeout(() => {
+        ticker.style.display = "none";
+      }, 9000);
+    }
+
+    setTimeout(showTicker, 2000);
+    setInterval(showTicker, 60000);
+
+    // Assign IDs to boxes
+    document.querySelectorAll('.box').forEach((box, index) => {
+      box.setAttribute('id', 'box' + (index + 1));
+    });
+  </script>
+</body>
+</html>
